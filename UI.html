@@ -15,6 +15,16 @@
 			width:450px;
 			height:30px;
 		}
+		.income
+		{
+			padding:10px;
+			margin-left:20px;
+			width: 480px;
+			word-wrap: break-word;
+			background-color: lightgray;
+			border:1px solid gray;
+			border-radius: 5px;
+		}
 
 	</style>
 	<style type="text/css" media="screen">
@@ -58,7 +68,7 @@
 
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
-				show.append(data + '<br/>');
+				show.append('<span class="income">' + data + '</span><br/>');
 
 			});
 
