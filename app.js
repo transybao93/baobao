@@ -43,6 +43,6 @@ io.sockets.on('connection', function(socket){
 	socket.on('disconnect', function(data){
 		if(!socket.nickname) return;
 		nicknames.splice(nicknames.indexOf(socket.nickname),1);
-		updateNickname();
+		updateNickName();
 	});
 });
