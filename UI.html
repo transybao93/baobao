@@ -105,6 +105,11 @@
 			font-weight:bold;
 			text-decoration: underline;
 		}
+		#username
+		{
+			color:#f76835;
+			text-decoration: underline;
+		}
 	</style>
 
 </head>
@@ -168,7 +173,7 @@
 
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
-				show.append('<p class="income"><b id="username">' + data.nick + '<b/>' + data.msg + '</p>');
+				show.append('<p class="income"><b id="username">' + data.nick + '<b/> : ' + data.msg + '</p>');
 				show.stop().animate({scrollTop: show[0].scrollHeight},'slow');
 			});
 
