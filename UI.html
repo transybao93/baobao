@@ -96,24 +96,8 @@
 			//fixed in bottom
 			show.bind('change', function(event) {
 				/* Act on the event */
-				$("#chat").animate({ scrollTop: $(document).height() }, "slow");
-  				return false;
+				$(this).stop();
 			});
-			
-			if(mess.text() == "" || mess.text() == " ")
-			{
-				alert("Nội dung rỗng");
-			}else{
-				messForm.submit(function(e)
-				{
-					e.preventDefault();
-					//gửi data lên server
-					socket.emit('send mess', mess.val().trim());
-					mess.val('');
-				});
-			}
-
-			
 
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
