@@ -94,7 +94,12 @@
 			var show = $('#chat');
 
 			//fixed in bottom
-			$('#chat').scrollTop($('#chat')[0].scrollHeight);
+			show.bind('change', function(event) {
+				/* Act on the event */
+				$("#chat").animate({ scrollTop: $(document).height() }, "slow");
+  				return false;
+			});
+			
 
 			messForm.submit(function(e)
 			{
