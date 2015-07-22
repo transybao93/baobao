@@ -63,6 +63,7 @@
 			float:left;
 			margin-top:50px;
 			margin-left:20px;
+			word-wrap: break-word;
 		}
 
 	</style>
@@ -97,6 +98,12 @@
 			border-radius: 4px;
 			padding: 5px 10px;
 			font-family: consolas;
+		}
+
+		#online_user
+		{
+			font-weight:bold;
+			text-decoration: underline;
 		}
 	</style>
 
@@ -192,7 +199,7 @@
 				var html = '';
 				for(i=0; i<data.length; i++)
 				{
-					html += '<p style="font-weight:bold">' + data[i] + ' đang online.</p><br>';
+					html += '<p id="online_user">' + data[i] + ' đang online.</p>';
 				}
 				user_list.text(html);
 			});
