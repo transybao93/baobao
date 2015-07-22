@@ -108,8 +108,8 @@
   	<!--Left login-->
   	<div class="left_login">
 		 <form id="loginForm">
-			<input type="textbox" name="first" class="box1" placeholder="Enter your fucking name"/> <br> <br>
-			<input type="submit" value="Login" class="login-button">
+			<input type="textbox" name="first" class="box1" placeholder="Biệt danh của bạn"/> <br> <br>
+			<input type="submit" value="Chat" class="login-button">
 		</form>
 		<p id="notification">Vui lòng chọn tên chat của bạn</p>
   	</div>
@@ -140,7 +140,7 @@
 			var mess = $('#message')
 			var show = $('#chat');
 
-			mess.css('disabled', 'disabled');
+			mess.prop('disabled', true);
 
 			messForm.submit(function(e)
 			{
