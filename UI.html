@@ -113,7 +113,6 @@
 		</form>
 		<p id="notification">Vui lòng điền biệt danh của bạn</p>
 		<br>
-		<br>
 		<hr>
 		<p>Danh sách trực tuyến</p>
 		<p id="users"></p>
@@ -193,7 +192,7 @@
 				var html = '';
 				for(i=0; i<data.length; i++)
 				{
-					html += data[i] + '<br/>';
+					html += data[i] + '<br>';
 				}
 				user_list.text(html);
 			});
