@@ -25,14 +25,24 @@ io.sockets.on('connection', function(socket){
 			callback(true);
 			socket.nickname = data;
 			nicknames.push(socket.nickname);
-			io.sockets.emit('usernames', nicknames);
+			updateNickName();
 		}
 	});
+
+	function updateNickName()
+	{
+		io.sockets.emit('usernames', nicknames);
+	}
 	//nhận thông tin từ client
 	socket.on('send mess', function(data)
 	{
 		//send data lại cho client
 		io.sockets.emit('new mess', data);
-		
+	});
+
+	socket.on('disconnect', function(data){
+		if(!socket.nickname) return;
+		nicknames.splice(nicknames.indexOf(socket.nickname),1);
+		updateNickname();
 	});
 });
