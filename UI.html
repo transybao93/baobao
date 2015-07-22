@@ -104,7 +104,7 @@
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
 				show.append('<p class="income">' + data + '</p>');
-				$("#chat").animate({ scrollTop: $(document).height() }, "slow");
+				$("#chat").stop().animate({ scrollTop: $(document).height() }, "slow");
 				return false;
 			});
 
