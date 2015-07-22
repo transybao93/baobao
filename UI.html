@@ -90,8 +90,11 @@
 		$(document).ready(function() {
 			var socket = io.connect();
 			var messForm = $('#send_message');
-			var mess = $('#message');
+			var mess = $('#message').trim();
 			var show = $('#chat');
+
+			//fixed in bottom
+			$('#chat').scrollTop($('#chat')[0].scrollHeight);
 
 			messForm.submit(function(e)
 			{
