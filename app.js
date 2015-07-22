@@ -17,8 +17,12 @@ app.get('/', function(req, res){
 //server nhận data từ client
 io.sockets.on('connection', function(socket){
 	//send về list nick ban đầu
-	updateNickName();
+	if(nicknames.length != 0)
+	{
+		updateNickName();
+	}
 	
+
 	//nhận data new user
 	socket.on('new user', function(data, callback){
 		if(nicknames.indexOf(data) != -1)

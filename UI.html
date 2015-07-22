@@ -104,7 +104,7 @@
 		{
 			font-weight:bold;
 			text-decoration: underline;
-			color: #b1eb00;
+			color: #00a03e;
 		}
 		#username
 		{
@@ -128,7 +128,7 @@
 		<br>
 		<hr>
 		<p>Danh sách trực tuyến</p>
-		<p id="users"></p>
+		<p id="users">Chưa có ai online</p>
   	</div>
   	<!--Main-->
   	<header id="header_text">Ứng dụng chat theo thời gian thực</header>
@@ -190,7 +190,7 @@
 					{
 						mess.prop('disabled', false);
 						nick.prop('disabled', true);
-						nick.text(data);
+						nick.val(data);
 						button.hide();
 						nickError.text("Chào mừng bạn đến với hệ thống chat v1.0");
 						nickError.css('color', 'green');
