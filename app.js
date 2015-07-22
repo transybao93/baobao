@@ -37,7 +37,7 @@ io.sockets.on('connection', function(socket){
 	socket.on('send mess', function(data)
 	{
 		//send data lại cho client
-		io.sockets.emit('new mess', data);
+		io.sockets.emit('new mess', {msg: data, nick: socket.nickname});
 	});
 
 	socket.on('disconnect', function(data){
