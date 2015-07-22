@@ -16,6 +16,7 @@
 			height:30px;
 		}
 	</style>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<div id="chat">
@@ -26,6 +27,31 @@
 		<input type="text" id="message"/>
 		<input type="submit" value="Send">
 	</form>
+
+	<!--New-->
+	<div class="phone-containter">
+	    <div id="phone" class="phone">
+	      <div class="message left">
+	      	<div class="message-text">Hello!</div>
+		  </div>
+			<div class="message right">
+				<div class="message-text">Hi!</div>
+			    <div class="message-text">Where are you now?</div>
+			</div>
+			<div class="message left">
+				<div class="message-text">I'm at a party of Clara</div>
+			</div>
+	    </div>
+	    
+	    <div class="send-container">
+	      <form id="send">
+	      <input type="text" id="msgInput" class="send-input" placeholder="Message" />
+	      <input type="submit" class="send-btn" value="Send">
+	      </form>
+	    </div>
+    
+  	</div>
+  	<!--New-->
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
