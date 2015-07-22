@@ -18,85 +18,13 @@
 
 	</style>
 	<style type="text/css" media="screen">
-		#chatContainer{
-		  margin:auto;
-		  margin-top:5px;
-		  width:95%;
-		}
-
-		#chatContainer .message{
-		  display:block;
-		  margin-bottom:12px;
-		  position:relative;
-		}
-		#chatContainer .message .contentContainer{
-		  min-height:100px;
-		  margin-left:100px;
-		}
-		#chatContainer .message .contentContainer .content{
-		  background-color:#389691;
-		  display:inline-block;
-		  margin-left:18px;
-		  padding:18px;
-		  position:relative;
-		  /*Box Shadow for added depth*/
-		  box-shadow:1px 1px 0px 0px rgba(91, 197, 191, 1),2px 2px 0px 0px rgba(91, 197, 191, 1),3px 3px 0px 0px rgba(91, 197, 191, 1),4px 4px 0px 0px rgba(91, 197, 191, 1),5px 5px 0px 0px rgba(91, 197, 191, 1);
-		}
-		#chatContainer .message .content:after{
-		  border-color: #389691 #389691 transparent transparent;
-		  border-style: solid;
-		  border-width: 5px;
-		  content:'';
-		  display:block;
-		  height:0;
-		  left:-10px;
-		  position:absolute;
-		  top:0px;
-		  width:0;
-		}
-		#chatContainer .thumbSpan{
-		  position:relative;
-		  float:left;
-		}
-		#chatContainer .thumbSpan img{
-		  box-shadow: 2px 2px 3px rgba(0,0,0,.75);
-		}
-		#chatContainer .thumbOverlay{
-		  position:absolute;
-		  width: calc(100% - 10px);
-		  background-color:rgba(0,0,0,.5);
-		  left:0px;
-		  bottom:3px;
-		  padding: 5px;
-		  visibility:hidden;
-		  color:#fff;
-		}
-		#chatContainer .thumbSpan:hover .thumbOverlay{
-		  visibility:visible;
-		}
+		
 	</style>
 
 </head>
 <body>
 	<!--New-->
-	<div id="chatContainer">
-		<span class="message">
-		  <!-- <span class="thumbSpan">
-		    <img class="avatar" src="http://placeimg.com/100/100/people" />
-		  </span> -->
-			  <div class="contentContainer">
-			    <span class="content">
-			      hello?
-			    </span>
-			  </div>
-			  <div class="contentContainer">
-			    <span class="content">
-			      ????
-			    </span>
-			  </div>
-		</span>
-
-	</div>
+	
   	<!--New-->
 
 	<div id="chat">
@@ -131,13 +59,6 @@
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
 				show.append(data + '<br/>');
-				$('.message').append('
-					<div class="contentContainer">
-					    <span class="content">
-					      '+data+'
-					    </span>
-					  </div>
-					');
 
 			});
 
