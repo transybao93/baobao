@@ -90,7 +90,7 @@
 		$(document).ready(function() {
 			var socket = io.connect();
 			var messForm = $('#send_message');
-			var mess = $('#message').trim();
+			var mess = $('#message')
 			var show = $('#chat');
 
 			//fixed in bottom
@@ -100,7 +100,7 @@
 			{
 				e.preventDefault();
 				//gửi data lên server
-				socket.emit('send mess', mess.val());
+				socket.emit('send mess', mess.val().trim());
 				mess.val('');
 			});
 
