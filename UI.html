@@ -32,20 +32,10 @@
 	<script type="text/javascript">
 		
 		$(document).ready(function() {
-			if (jQuery) {  
- 
-			   alert("jQuery library is loaded!");
-			 
-			} else {
-			 
-			   alert("jQuery library is not found!");
-			 
-			}
 			var socket = io.connect();
 			var messForm = $('#send_message');
 			var mess = $('#message');
 			var show = $('#chat');
-			show.hide();
 
 			messForm.submit(function(e)
 			{
