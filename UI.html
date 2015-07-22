@@ -84,6 +84,27 @@
 
 </head>
 <body>
+	<!--New-->
+	<div id="chatContainer">
+		<span class="message">
+		  <!-- <span class="thumbSpan">
+		    <img class="avatar" src="http://placeimg.com/100/100/people" />
+		  </span> -->
+			  <div class="contentContainer">
+			    <span class="content">
+			      hello?
+			    </span>
+			  </div>
+			  <div class="contentContainer">
+			    <span class="content">
+			      ????
+			    </span>
+			  </div>
+		</span>
+
+	</div>
+  	<!--New-->
+
 	<div id="chat">
 		
 	</div>
@@ -93,20 +114,7 @@
 		<input type="submit" value="Send">
 	</form>
 
-	<!--New-->
-	<div id="chatContainer">
-		<span class="message">
-		  <span class="thumbSpan">
-		    <img class="avatar" src="http://placeimg.com/100/100/people" />
-		  </span>
-		  <div class="contentContainer">
-		    <span class="content">
-		      hello?
-		    </span>
-		  </div>
-		</span>
-	</div>
-  	<!--New-->
+
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
@@ -117,8 +125,6 @@
 			var messForm = $('#send_message');
 			var mess = $('#message');
 			var show = $('#chat');
-			var right = $('#mess_right');
-			var left = $('#mess_left');
 
 			messForm.submit(function(e)
 			{
@@ -131,7 +137,7 @@
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
 				show.append(data + '<br/>');
-				right.val(data);
+
 			});
 
 		});
