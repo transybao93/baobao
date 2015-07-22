@@ -131,7 +131,13 @@
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
 				show.append(data + '<br/>');
-				$('.contentContainer .content').html(data);
+				show.append('
+					<div class="contentContainer">
+					    <span class="content">
+					      '+data+'
+					    </span>
+					  </div>
+					');
 
 			});
 
