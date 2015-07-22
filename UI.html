@@ -100,14 +100,20 @@
   				return false;
 			});
 			
-
-			messForm.submit(function(e)
+			if(mess.val() == "" || mess.val() == " ")
 			{
-				e.preventDefault();
-				//gửi data lên server
-				socket.emit('send mess', mess.val().trim());
-				mess.val('');
-			});
+				alert("Nội dung rỗng");
+			}else{
+				messForm.submit(function(e)
+				{
+					e.preventDefault();
+					//gửi data lên server
+					socket.emit('send mess', mess.val().trim());
+					mess.val('');
+				});
+			}
+
+			
 
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
