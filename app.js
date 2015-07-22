@@ -10,6 +10,6 @@ var port = Number(process.env.PORT || 3000);
 server.listen(port);
 
 //trỏ đến file html
-app.get('/', function(req, res){
+express.get('/', function(req, res){
 	res.sendFile(__dirname + '/UI.html');
 });
