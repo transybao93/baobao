@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Real time chat application</title>
+	<style>
+		#chat
+		{
+			width:500px;
+			height:500px;
+			overflow:auto;
+			border:1px solid red;
+		}
+		#message
+		{
+			width:450px;
+			height:30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="chat">
+		
+	</div>
+	<br>
+	<form id="send_message">
+		<input type="text" id="message"/>
+		<input type="submit" value="Send">
+	</form>
+
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function() {
+			var socket = io.connect();
+			var messForm = $('#send_message');
+			var mess = $('#message');
+			var show = $('#chat');
+
+			messForm.submit(function(e)
+			{
+				e.preventDefault();
+				//gửi data lên server
+				socket.emit('send mess', mess.val());
+				mess.val('');
+			});
+
+			//client nhận data trả về từ server
+			socket.on('new mess', function(data){
+				show.append(data + '<br/>');
+			});
+
+		});
+	</script>
+</body>
+</html>

@@ -1,4 +1,6 @@
 var http = require('http');
+var express = require('express'),
+	app = express(),
 var server = http.createServer(function (req, res) {
 	res.writeHead(200, {'Content-Type': 'text/plain'});
 	res.end('Hello Node.js\n');
@@ -6,3 +8,8 @@ var server = http.createServer(function (req, res) {
 
 var port = Number(process.env.PORT || 3000);
 server.listen(port);
+
+//trỏ đến file html
+app.get('/', function(req, res){
+	res.sendFile(__dirname + '/UI.html');
+});
