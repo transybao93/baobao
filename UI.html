@@ -58,17 +58,17 @@
 		}
 		.left_login
 		{
-			width:200px;
+			width:auto;
 			height:100px;
-			background:black;
 			float:left;
+			margin-top:30px;
 		}
 
 	</style>
 	<style type="text/css" media="screen">
 		* {font-family: calibri;}
 
-		input {
+		#loginForm > input {
 			box-shadow: 2px 2px 5px #808080;
 		}
 
@@ -85,7 +85,8 @@
 		}
 
 		a{
-			text-decoration: none;color: #008080;
+			text-decoration: none;
+			color: #008080;
 		}
 
 		.box1,.box2 {
@@ -105,7 +106,7 @@
   	<!--New-->
   	<!--Left login-->
   	<div class="left_login">
-		 <form>
+		 <form id="loginForm">
 			<input type="textbox" name="first" class="box1" placeholder="First Name"/> <br> <br>
 			<input type="submit" value="Login" class="login-button">
 		</form>
