@@ -104,6 +104,7 @@
 		{
 			font-weight:bold;
 			text-decoration: underline;
+			color: #b1eb00;
 		}
 		#username
 		{
@@ -160,6 +161,7 @@
 			var nick = $('#nickname');
 			var nickError = $('#notification');
 			var user_list = $('#users');
+			var button = $('.login-button');
 
 			mess.prop('disabled', true);
 
@@ -173,7 +175,7 @@
 
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
-				show.append('<p class="income"><b id="username">' + data.nick + '<b/> : ' + data.msg + '</p>');
+				show.append('<p class="income"><b id="username">' + data.nick + '</b> : ' + data.msg + '</p>');
 				show.stop().animate({scrollTop: show[0].scrollHeight},'slow');
 			});
 
@@ -188,11 +190,15 @@
 					{
 						mess.prop('disabled', false);
 						nick.prop('disabled', true);
-						nickError.text("Hợp lệ");
+						nick.text(data);
+						button.hide();
+						nickError.text("Chào mừng bạn đến với hệ thống chat v1.0");
 						nickError.css('color', 'green');
+						mess.focus();
 					}else{
 						nickError.text("Đã tồn tại biệt danh này");
 						nickError.css('color', 'red');
+						nick.focus();
 					}
 				});
 				nick.val('');
