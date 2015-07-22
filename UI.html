@@ -93,16 +93,11 @@
 			var mess = $('#message')
 			var show = $('#chat');
 
-			//fixed in bottom
-			show.bind('change', function(event) {
-				/* Act on the event */
-				$(this).stop();
-			});
-
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
 				show.append('<p class="income">' + data + '</p>');
 				$("#chat").animate({ scrollTop: $(document).height() }, "slow");
+				return false;
 			});
 
 		});
