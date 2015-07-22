@@ -111,7 +111,12 @@
 			<input type="textbox" name="first" class="box1" id="nickname" placeholder="Biệt danh của bạn"/> <br> <br>
 			<input type="submit" value="Chat" class="login-button" style="cursor:pointer">
 		</form>
-		<p id="notification">Vui lòng chọn tên chat của bạn</p>
+		<p id="notification">Vui lòng điền biệt danh của bạn</p>
+		<br>
+		<br>
+		<hr>
+		<p>Danh sách trực tuyến</p>
+		<p id="users"></p>
   	</div>
   	<!--Main-->
   	<header id="header_text">Ứng dụng chat theo thời gian thực</header>
@@ -143,6 +148,7 @@
 			var nickForm = $('#nickForm');
 			var nick = $('#nickname');
 			var nickError = $('#notification');
+			var user_list = $('#users');
 
 			mess.prop('disabled', true);
 
@@ -171,11 +177,25 @@
 					{
 						mess.prop('disabled', false);
 						nick.prop('disabled', true);
+						nickError.text("Hợp lệ");
+						nickError.css('color', 'green');
 					}else{
 						nickError.text("Đã tồn tại biệt danh này");
+						nickError.css('color', 'red');
 					}
 				});
 				nick.val('');
+			});
+
+			//show the user list
+			socket.on('usernames', function(data)
+			{
+				var html = '';
+				for(int i=0; i<data.length; i++)
+				{
+					html += data[i] + '<br/>';
+				}
+				user_list.text(html);
 			});
 
 		});
