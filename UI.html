@@ -93,6 +93,14 @@
 			var mess = $('#message')
 			var show = $('#chat');
 
+			messForm.submit(function(e)
+			{
+				e.preventDefault();
+				//gửi data lên server
+				socket.emit('send mess', mess.val().trim());
+				mess.val('');
+			});
+
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
 				show.append('<p class="income">' + data + '</p>');
