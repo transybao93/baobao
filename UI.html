@@ -108,7 +108,7 @@
   	<!--Left login-->
   	<div class="left_login">
 		 <form id="nickForm">
-			<input type="textbox" name="first" class="box1" placeholder="Biệt danh của bạn"/> <br> <br>
+			<input type="textbox" name="first" class="box1" id="nickname" placeholder="Biệt danh của bạn"/> <br> <br>
 			<input type="submit" value="Chat" class="login-button" style="cursor:pointer">
 		</form>
 		<p id="notification">Vui lòng chọn tên chat của bạn</p>
@@ -141,7 +141,7 @@
 			var show = $('#chat');
 			//nick name
 			var nickForm = $('#nickForm');
-			var nick = $('.box1');
+			var nick = $('#nickname');
 			var nickError = $('#notification');
 
 			mess.prop('disabled', true);
@@ -165,13 +165,14 @@
 				/* Act on the event */
 				e.preventDefault();
 				//send name to server
-				socket.emit('new user', nick.val().trim(), function(data){
+				socket.emit('new user', nick.val(), function(data)
+				{
 					if(data)
 					{
 						mess.prop('disabled', false);
 						nick.prop('disabled', true);
 					}else{
-						nickError.text("Đã tồn tại tên này");
+						nickError.text("Đã tồn tại biệt danh này");
 					}
 				});
 				nick.val('');

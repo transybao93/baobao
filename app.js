@@ -24,7 +24,7 @@ io.sockets.on('connection', function(socket){
 		}else{
 			callback(true);
 			socket.nickname = data;
-			nickname.push(socket.nickname);
+			nicknames.push(socket.nickname);
 			io.sockets.emit('usernames', nicknames);
 		}
 	});
