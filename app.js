@@ -12,3 +12,12 @@ server.listen(port);
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/UI.html');
 });
+
+//server nhận data từ client
+io.sockets.on('connection', function(socket){
+	socket.on('send mess', function(data)
+	{
+		io.sockets.emit('new mess', data);
+		
+	});
+});
