@@ -4,8 +4,10 @@
   "description": "simple chat application",
   "main": "app.js",
   "dependencies":{
-      "express":"4.13.1",
-      "npm":"2.11.3",
+      "express":"4.13.1"
+  },
+  "engines": {
+    "npm":"2.11.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
