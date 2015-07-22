@@ -171,7 +171,8 @@
 			  return false;
 			})
 
-			$('#send').bind('submit', function() {
+			$('#send').bind('submit', function(e) {
+				e.preventDefault();
 			  var msgText = $('#msgInput').val();
 			  $('#msgInput').val('');
 			  
