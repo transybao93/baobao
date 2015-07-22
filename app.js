@@ -1,8 +1,8 @@
 var express = require('express'),
 	app = express(),
-	server = require('http').createServer(app),
+	server = require('http').createServer(app);
 	//io = require('socket.io').listen(server);
-	var port = Number(process.env.PORT || 3000);
+	var port = process.env.PORT || 3000;
 server.listen(port);
 // io.configure(function () { 
 //   io.set("transports", ["xhr-polling"]); 
