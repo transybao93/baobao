@@ -7,7 +7,7 @@
 		{
 			background: #efefef;
 		}
-		header
+		header#header_text
 		{
 			margin:0px auto;
 			font-size: 1.3em;
@@ -62,14 +62,14 @@
 			height:100px;
 			float:left;
 			margin-top:50px;
-			margin-left:15px;
+			margin-left:20px;
 		}
 
 	</style>
 	<style type="text/css" media="screen">
 		* {font-family: calibri;}
 
-		#loginForm > input {
+		input {
 			box-shadow: 2px 2px 5px #808080;
 		}
 
@@ -108,13 +108,13 @@
   	<!--Left login-->
   	<div class="left_login">
 		 <form id="loginForm">
-			<input type="textbox" name="first" class="box1" placeholder="First Name"/> <br> <br>
+			<input type="textbox" name="first" class="box1" placeholder="Enter your fucking name"/> <br> <br>
 			<input type="submit" value="Login" class="login-button">
 		</form>
-		<p>Text here</p>
+		<p id="notification">Vui lòng chọn tên chat của bạn</p>
   	</div>
   	<!--Main-->
-  	<header>Ứng dụng chat theo thời gian thực</header>
+  	<header id="header_text">Ứng dụng chat theo thời gian thực</header>
   	<br>
 	<div class="wrap">
 		<div id="chat">
@@ -139,6 +139,8 @@
 			var messForm = $('#send_message');
 			var mess = $('#message')
 			var show = $('#chat');
+
+			mess.css('disabled', 'disabled');
 
 			messForm.submit(function(e)
 			{
