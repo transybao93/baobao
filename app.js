@@ -53,3 +53,5 @@ io.sockets.on('connection', function(socket){
 		updateNickName();
 	});
 });
+
+//private chat message
