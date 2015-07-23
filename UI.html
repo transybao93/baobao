@@ -188,9 +188,12 @@
 				{
 					if(data)
 					{
+						//nhận từ server
+						socket.on('current user', function(data){
+							nick.val(data);
+						});
 						mess.prop('disabled', false);
 						nick.prop('disabled', true);
-						nick.val(data.nick);
 						button.hide();
 						nickError.text("Chào mừng bạn đến với hệ thống chat v1.0");
 						nickError.css('color', 'green');

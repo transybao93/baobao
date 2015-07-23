@@ -32,6 +32,8 @@ io.sockets.on('connection', function(socket){
 			callback(true);
 			socket.nickname = data;
 			nicknames.push(socket.nickname);
+			//gửi giá trị xuống client để hiển thị
+			io.sockets.emit('current user', data);
 			updateNickName();
 		}
 	});
