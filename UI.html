@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Real time chat application</title>
+	<title>Hệ thống chat thời gian thực</title>
+	<link rel="icon" type="image/png" href="https://cdn2.iconfinder.com/data/icons/ios7-inspired-mac-icon-set/32/messages_32.png">
 	<style>
 		body
 		{
@@ -177,6 +178,9 @@
 			socket.on('new mess', function(data){
 				show.append('<p class="income"><b id="username">' + data.nick + '</b> : ' + data.msg + '</p>');
 				show.stop().animate({scrollTop: show[0].scrollHeight},'slow');
+				//10:23 sáng 24-07-2015
+				//lấy data từ server nếu có tin nhắn mới
+				$('title').html(data.nick + ' vừa chat');
 			});
 
 			//phần nick name
