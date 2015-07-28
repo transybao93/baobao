@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hệ thống chat thời gian thực</title>
+	<title>
+		Real time chat
+	</title>
 	<link rel="icon" type="image/png" href="https://cdn2.iconfinder.com/data/icons/ios7-inspired-mac-icon-set/32/messages_32.png">
 	<style>
 		body
@@ -72,6 +74,13 @@
 			margin-left:20px;
 			word-wrap: break-word;
 		}
+		#hashtag
+		{
+			color:white;
+			background:#00a03e;
+			padding: 3px;
+			border-radius:3px;
+		}
 
 	</style>
 	<style type="text/css" media="screen">
@@ -118,6 +127,27 @@
 			color:#f76835;
 			text-decoration: underline;
 		}
+		.typing
+		{
+			width:100%;
+			height:20px;
+		}
+		.right_tag
+		{
+			float:right;
+			width:300px;
+			height:100px;
+			margin-top:20px;
+			margin-right:20px;
+		}
+		.hashtag
+		{
+			background: white;
+			width:300px;
+			height:250px;
+			overflow:auto;
+			border:2px solid #85c4b9;
+		}
 	</style>
 
 </head>
@@ -137,12 +167,24 @@
 		<p>Danh sách trực tuyến</p>
 		<p id="users">Không có ai online</p>
   	</div>
+  	<!--Right hashtag-->
+  	<div class="right_tag">
+  		<p>#Hashtag</p>
+  		<div class="hashtag">
+
+  		</div>	
+	</div>
   	<!--Main-->
-  	<header id="header_text">Ứng dụng chat theo thời gian thực</header>
+  	<header id="header_text">
+  		Ứng dụng chat theo thời gian thực
+  	</header>
   	<br>
 	<div class="wrap">
 		<div id="chat">
 			
+		</div>
+		<div class="typing">
+			<span><em class="typing_name">bao đang gõ</em></span>
 		</div>
 		<br>
 		
@@ -150,7 +192,10 @@
 			<input type="text" id="message"/>
 	<!-- 		<input type="submit" value="Send"> -->
 		</form>
+		
+		
 	</div>
+	
 
 
 
@@ -161,7 +206,7 @@
 		$(document).ready(function() {
 			var socket = io.connect();
 			var messForm = $('#send_message');
-			var mess = $('#message')
+			var mess = $('#message');
 			var show = $('#chat');
 			//nick name
 			var nickForm = $('#nickForm');
@@ -169,24 +214,45 @@
 			var nickError = $('#notification');
 			var user_list = $('#users');
 			var button = $('.login-button');
+			//hashtag area
+			var hashtag = $('.hashtag');
 
 			mess.prop('disabled', true);
+
 
 			messForm.submit(function(e)
 			{
 				e.preventDefault();
 				//gửi data lên server
-				socket.emit('send mess', mess.val().trim());
+				socket.emit('send mess', mess.val().trim(), function(data)
+					{
+						show.append('<p class="income">' + data + '</p>');
+					});
 				mess.val('');
 			});
 
 			//client nhận data trả về từ server
 			socket.on('new mess', function(data){
-				show.append('<p class="income"><b id="username">' + data.nick + '</b> : ' + data.msg + '</p>');
-				show.stop().animate({scrollTop: show[0].scrollHeight},'slow');
-				//10:23 sáng 24-07-2015
-				//lấy data từ server nếu có tin nhắn mới
-				$('title').html(data.nick + ' vừa chat');
+				if(data.msg.substr(0,1) == '#')
+				{
+					var ind = data.msg.indexOf(' ');
+					var hashtag = data.msg.substr(0, ind);
+					var message = data.msg.substr(ind + 1);
+					console.log(message);
+					show.append('<p class="income"><b id="username">' + data.nick + '</b> : <span id="hashtag">' + hashtag +'</span> ' + message + '</p>');
+					show.stop().animate({scrollTop: show[0].scrollHeight},'slow');
+					//10:23 sáng 24-07-2015
+					//lấy data từ server nếu có tin nhắn mới
+					$('title').html(data.nick + ' vừa chat');
+
+				}else{
+					show.append('<p class="income"><b id="username">' + data.nick + '</b> : ' + data.msg + '</p>');
+					show.stop().animate({scrollTop: show[0].scrollHeight},'slow');
+					//10:23 sáng 24-07-2015
+					//lấy data từ server nếu có tin nhắn mới
+					$('title').html(data.nick + ' vừa chat');
+				}
+				
 			});
 
 			//phần nick name
@@ -198,16 +264,17 @@
 				{
 					if(data)
 					{
-						//nhận từ server
-						socket.on('current user', function(data){
-							nick.val(data);
-						});
+						
 						mess.prop('disabled', false);
 						nick.prop('disabled', true);
+						
+						
 						button.hide();
 						nickError.text("Chào mừng bạn đến với hệ thống chat v1.0");
 						nickError.css('color', 'green');
 						mess.focus();
+						//set name for input
+						nick.hide();
 					}else{
 						nickError.text("Đã tồn tại biệt danh này");
 						nickError.css('color', 'red');
@@ -227,6 +294,12 @@
 				}
 				user_list.html(html);
 			});
+
+			//nhận từ server
+			socket.on('hashtag',function(data){
+				hashtag.append('<p class="income"><b id="username">' + data.nick + '</b> : ' + data.msg + '</p>');
+			});
+			
 
 		});
 	</script>
