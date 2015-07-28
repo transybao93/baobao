@@ -82,6 +82,14 @@ io.sockets.on('connection', function(socket){
 		delete users[socket.nickname];
 		updateNickName();
 	});
+
+	//user image
+	socket.on('user image', function (msg, callback) {
+      // console.log(msg);
+      socket.broadcast.emit('user image', socket.nickname, msg);
+      console.log(socket.nickname);
+      callback(socket.nickname);
+    });
 });
 
 //private chat message updatered

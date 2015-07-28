@@ -81,6 +81,15 @@
 			padding: 3px;
 			border-radius:3px;
 		}
+		footer
+		{
+			margin:0px auto;
+			text-align: center;
+		}
+		p#notification
+		{
+			margin-top:10px;
+		}
 
 	</style>
 	<style type="text/css" media="screen">
@@ -121,6 +130,7 @@
 			font-weight:bold;
 			text-decoration: underline;
 			color: #00a03e;
+			cursor:pointer;
 		}
 		#username
 		{
@@ -147,6 +157,16 @@
 			height:250px;
 			overflow:auto;
 			border:2px solid #85c4b9;
+		}
+		p
+		{
+			margin-top:-10px;
+		}
+		#result
+		{
+			width:60%;
+			height:70%;
+			border-radius: 5px;
 		}
 	</style>
 
@@ -189,12 +209,16 @@
 		<br>
 		
 		<form id="send_message">
+			<p><input type="file" id="imagefile" accept="image/*"></p>
 			<input type="text" id="message"/>
-	<!-- 		<input type="submit" value="Send"> -->
 		</form>
 		
 		
 	</div>
+	<footer>
+		<br>
+		<p>Hosted by Heroku - Coding by Bao Bao - version 1.0</p>
+	</footer>
 	
 
 
@@ -218,6 +242,7 @@
 			var hashtag = $('.hashtag');
 
 			mess.prop('disabled', true);
+			$('#imagefile').prop('disabled',true);
 
 
 			messForm.submit(function(e)
@@ -267,7 +292,7 @@
 						
 						mess.prop('disabled', false);
 						nick.prop('disabled', true);
-						
+						$('#imagefile').prop('disabled',false);
 						
 						button.hide();
 						nickError.text("Chào mừng bạn đến với hệ thống chat v1.0");
@@ -290,7 +315,7 @@
 				var html = '';
 				for(i=0; i<data.length; i++)
 				{
-					html += '<span id="online_user">' + data[i] + '</span> đang online.<br/>';
+					html += '<span id="online_user" >' + data[i] + '</span> đang online.<br/>';
 				}
 				user_list.html(html);
 			});
@@ -300,14 +325,37 @@
 				hashtag.append('<p class="income"><b id="username">' + data.nick + '</b> : ' + data.msg + '</p>');
 			});
 			
+			//send image
 
+		 	$('#imagefile').bind('change', function(e){
+		      	var data = e.originalEvent.target.files[0];
+		      	var reader = new FileReader();
+		      	reader.onload = function(evt){
+			        
+			        socket.emit('user image', evt.target.result,function(data){
+			        	image(data, evt.target.result);
+			        });
+		      	};
+		      	reader.readAsDataURL(data);
+		      
+		    });
+
+		 	function image (from, base64Image) {
+			    // show.append($('<p>').append($('<b>').text(from), '<img src="' + base64Image + '"/>'));
+			    show.append('<div class="income"><p><b id="username">' + from + '</b> :</p> <img id="result" src="' + base64Image + '"/></div>');
+			    show.stop().animate({scrollTop: show[0].scrollHeight},'slow');
+			    $('title').html(from + ' vừa tải lên một ảnh');
+			  }
+		  	socket.on('user image', image);
+
+
+		  	//resize image
+		  	 
 		});
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			
-		});		
+		
 	</script>
 </body>
 </html>
